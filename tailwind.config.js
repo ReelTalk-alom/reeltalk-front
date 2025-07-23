@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        gmarket: ["GmarketSans", "sans-serif"],
+        gmarket: ["GmarketSans"],
       },
     },
   },

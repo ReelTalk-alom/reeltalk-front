@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-reeltalk-cream-50: #f7f6ef;
-  --color-reeltalk-cream-100: #ecebd6;
+  --color-reeltalk-cream-base: #ecebd6;
   --color-reeltalk-cream-200: #dad7ae;
   --color-reeltalk-cream-300: #c4bd80;
   --color-reeltalk-cream-400: #b3a45c;
@@ -28,7 +28,7 @@
   --color-reeltalk-darkgray-500: #557285;
   --color-reeltalk-darkgray-600: #495f71;
   --color-reeltalk-darkgray-700: #40505e;
-  --color-reeltalk-darkgray-800: #38434e;
+  --color-reeltalk-darkgray-base: #38434e;
   --color-reeltalk-darkgray-900: #333c46;
   --color-reeltalk-darkgray-950: #1f252d;
 
