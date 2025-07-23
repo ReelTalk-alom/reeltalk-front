@@ -7,8 +7,8 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        ReelTalk_Cream: "#ECEBD6",
+      fontFamily: {
+        gmarket: ["GmarketSans", "sans-serif"],
       },
     },
   },

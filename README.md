@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# REELTALK
 
-## Getting Started
+영화 리뷰어와 팬을 위한 소셜 리뷰 플랫폼
 
-First, run the development server:
+## 서비스 소개
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+REELTALK는 영화 리뷰어와 팬들이 자유롭게 영화에 대한 감상, 리뷰, 토론을 나눌 수 있는 소셜 플랫폼입니다.  
+최신 영화 정보, 리뷰, 평점, 이미지 기반 감상 공유, 다양한 영화 커뮤니티 기능을 제공합니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 주요 기능
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 영화별 리뷰 및 평점 작성/수정/삭제
+- 텍스트/동영상 기반 감상 공유
+- 인기 리뷰어 및 리뷰 피드
+- 영화별 토론 및 댓글
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 기술 스택
 
-## Learn More
+- **Next.js 15**
+- **TypeScript**
+- **TailwindCSS**
 
-To learn more about Next.js, take a look at the following resources:
+## 라이선스
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+MIT
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+문의 및 피드백은 언제든 환영합니다!
