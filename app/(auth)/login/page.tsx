@@ -7,14 +7,49 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 export default function LogIn() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleToggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const handleModeToggle = () => {
+    setIsSignUpMode(!isSignUpMode);
+    setError("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    setName("");
+  };
+
+  const handleSignUpClick = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!name || !email || !password || !confirmPassword) {
+      setError("모든 필드를 입력해주세요.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    setIsLoading(true);
+    setError("");
+    // 회원가입 로직 구현
   };
 
   const handleLoginClick = async (e: React.FormEvent) => {
@@ -94,24 +129,27 @@ export default function LogIn() {
           <form className="flex flex-col items-center p-6 mt-30">
             {/* 제목 */}
             <h2 className="mb-7 text-[43px] font-extrabold text-reeltalk-darkgray-base font-[gmarket]">
-              LOGIN
+              {isSignUpMode ? "JOIN IN" : "LOGIN"}
             </h2>
 
             {/* 이메일 입력 필드 */}
-            <div className="flex relative justify-center w-full">
+            <div className="flex relative justify-center mb-6 w-full">
               <input
                 type="email"
                 placeholder="E-mail"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="px-4 py-4 mb-4 w-3/4 bg-transparent border-1 placeholder-reeltalk-darkgray-base/90 border-reeltalk-darkgray-base text-reeltalk-darkgray-base placeholder:text-xl focus:outline-none"
               />
             </div>
+
             {/* 비밀번호 입력 필드 */}
             <div className="flex relative justify-center mb-4 w-full">
               <div className="relative w-3/4">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="px-4 py-4 pr-12 w-full bg-transparent placeholder-reeltalk-darkgray-base border-1 border-reeltalk-darkgray-base text-reeltalk-darkgray-base placeholder:text-xl focus:outline-none"
                 />
@@ -131,34 +169,113 @@ export default function LogIn() {
                 </button>
               </div>
             </div>
-            {/* 아이디/비밀번호 찾기 */}
+
+            {/* 회원가입 모드일 때 비밀번호 확인 필드 */}
+            {isSignUpMode && (
+              <div className="flex relative justify-center mb-8 w-full">
+                <div className="relative w-3/4">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Check the password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="px-4 py-4 pr-12 w-full bg-transparent placeholder-reeltalk-darkgray-base border-1 border-reeltalk-darkgray-base text-reeltalk-darkgray-base placeholder:text-xl focus:outline-none"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleToggleConfirmPassword}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-reeltalk-darkgray-base hover:text-reeltalk-darkgray-300 focus:outline-none"
+                    aria-label={
+                      showConfirmPassword
+                        ? "비밀번호 확인 숨기기"
+                        : "비밀번호 확인 보기"
+                    }
+                  >
+                    {showConfirmPassword ? (
+                      <EyeSlashIcon className="w-6 h-6" />
+                    ) : (
+                      <EyeIcon className="w-6 h-6" />
+                    )}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* 회원가입 모드일 때 이름 입력 필드 */}
+            {isSignUpMode && (
+              <div className="flex relative justify-center w-full">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="px-4 py-4 mb-4 w-3/4 bg-transparent border-1 placeholder-reeltalk-darkgray-base/90 border-reeltalk-darkgray-base text-reeltalk-darkgray-base placeholder:text-xl focus:outline-none"
+                />
+              </div>
+            )}
+
+            {/* 에러 메시지와 링크 */}
             <div className="flex justify-between items-center mb-10 w-3/4">
               {error && (
                 <p className="text-xs font-semibold text-reeltalk-error-red">
                   {error}
                 </p>
               )}
-              <p className="ml-auto text-sm font-semibold cursor-pointer text-reeltalk-darkgray-base hover:underline">
-                아이디 찾기 | 비밀번호 재설정
-              </p>
+              {!isSignUpMode && (
+                <p className="ml-auto text-sm font-semibold cursor-pointer text-reeltalk-darkgray-base hover:underline">
+                  아이디 찾기 | 비밀번호 재설정
+                </p>
+              )}
             </div>
-            {/* 로그인 버튼 아래 마진 추가 */}
-            <button
-              type="submit"
-              onClick={handleLoginClick}
-              disabled={isLoading}
-              className="py-3 mb-3 w-3/4 text-xl text-white bg-reeltalk-darkgray-base disabled:bg-reeltalk-darkgray-500 disabled:cursor-not-allowed border-1 border-reeltalk-darkgray-base"
-            >
-              {isLoading ? "로그인 중..." : "로그인"}
-            </button>
-            <button className="py-3 mb-20 w-3/4 text-xl bg-transparent border-1 text-reeltalk-darkgray-base disabled:bg-reeltalk-darkgray-500 disabled:cursor-not-allow border-reeltalk-darkgray-base">
-              회원가입
-            </button>
+
+            {/* 버튼 영역 */}
+            {isSignUpMode ? (
+              /* 회원가입 모드 */
+              <>
+                <button
+                  type="submit"
+                  onClick={handleSignUpClick}
+                  disabled={isLoading}
+                  className="py-3 mb-6 w-3/4 text-xl text-white bg-reeltalk-darkgray-base disabled:bg-reeltalk-darkgray-500 disabled:cursor-not-allowed border-1 border-reeltalk-darkgray-base"
+                >
+                  {isLoading ? "가입하기 중..." : "가입하기"}
+                </button>
+                <p className="mb-20 text-sm text-reeltalk-darkgray-base">
+                  이미 계정이 있나요?{" "}
+                  <button
+                    type="button"
+                    onClick={handleModeToggle}
+                    className="font-semibold underline hover:text-reeltalk-darkgray-300"
+                  >
+                    로그인하러가기
+                  </button>
+                </p>
+              </>
+            ) : (
+              /* 로그인 모드 */
+              <>
+                <button
+                  type="submit"
+                  onClick={handleLoginClick}
+                  disabled={isLoading}
+                  className="py-3 mb-3 w-3/4 text-xl text-white bg-reeltalk-darkgray-base disabled:bg-reeltalk-darkgray-500 disabled:cursor-not-allowed border-1 border-reeltalk-darkgray-base"
+                >
+                  {isLoading ? "로그인 중..." : "로그인"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleModeToggle}
+                  className="py-3 mb-20 w-3/4 text-xl bg-transparent border-1 text-reeltalk-darkgray-base disabled:bg-reeltalk-darkgray-500 disabled:cursor-not-allow border-reeltalk-darkgray-base"
+                >
+                  회원가입
+                </button>
+              </>
+            )}
             {/* SNS 로그인 */}
             <div className="flex relative items-center mb-4 w-3/4 font-bold">
               <div className="flex-grow border-t border-reeltalk-darkgray-base"></div>
               <span className="flex-shrink mx-4 text-sm font-bold text-reeltalk-darkgray-base">
-                SNS 계정으로 로그인
+                {isSignUpMode ? "SNS 계정 연결하기" : "SNS 계정으로 로그인"}
               </span>
               <div className="flex-grow border-t border-reeltalk-darkgray-base"></div>
             </div>
