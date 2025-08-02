@@ -32,6 +32,8 @@
   --color-reeltalk-darkgray-900: #333c46;
   --color-reeltalk-darkgray-950: #1f252d;
 
+  --color-reeltalk-error-red: #ff3939;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
