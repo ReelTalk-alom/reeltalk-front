@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         gmarket: ["GmarketSans"],
       },
+      colors: {"reeltalk-cream-base": "#EEEED3"}
     },
   },
   plugins: [],
