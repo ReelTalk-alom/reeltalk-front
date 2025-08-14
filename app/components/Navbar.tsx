@@ -5,7 +5,7 @@ import { CiSearch } from "react-icons/ci";
 export default function Navbar() {
     return (
         <header 
-        className="text-black bg-reeltalk-cream-base w-full h-[6.5vh] flex items-center justify-between px-4 absolute top-6"
+        className="text-black bg-reeltalk-cream-base w-full h-[6.5vh] flex items-center justify-between px-6 absolute top-6"
         >
             
             {/*라우팅 버튼들*/}
