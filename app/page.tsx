@@ -2,6 +2,7 @@
 
 import { CustomArrowDown } from "./CustomArrowDown";
 import {useRef} from "react";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -46,12 +47,13 @@ export default function Home() {
 
       {/* 홈페이지 */}
       <section className="w-screen snap-center relative -mt-6">
-        <div className="flex justify-center items-start w-full h-full bg-reeltalk-cream-base">
-          <img 
-          className="w-full h-[970px] object-cover object-top" 
-          src="/images/Exposter.jpg"
-          />
-        </div>
+        <Navbar />
+            <div className="flex justify-center items-start w-full h-full bg-reeltalk-cream-base">
+              <img 
+              className="w-full h-[970px] object-cover object-top" 
+              src="/images/Exposter.jpg"
+              />
+            </div>
       </section>
 
     </main>
